@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ajouter un compagnon — Rappel anniversaire</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="registry.css">
+    <script src="contact-store.js" defer></script>
+    <script src="contacts.js" defer></script>
+    <script src="form.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Le livre des compagnons</p>
+      <h1>Rappel anniversaire</h1>
+      <p class="subtitle">Les années passent. Les liens demeurent.</p>
+      <nav class="page-nav" aria-label="Navigation"><a class="button-link" href="registry.html">Consulter le registre</a></nav>
+      <section aria-labelledby="form-title">
+        <h2 id="form-title">Ajouter un compagnon</h2>
+        <p>Le nom et la date sont obligatoires.</p>
+        <form id="contact-form">
+          <fieldset id="contact-fields" disabled>
+            <label for="name">Nom</label>
+            <input id="name" name="name" type="text" maxlength="120" required>
+            <label for="birthday">Date de naissance</label>
+            <input id="birthday" name="birthday" type="date" min="0001-01-01" max="9999-12-31" required>
+            <label for="phone">Téléphone (facultatif)</label>
+            <input id="phone" name="phone" type="tel" maxlength="40">
+            <label for="comment">Commentaire (facultatif)</label>
+            <textarea id="comment" name="comment" rows="3" maxlength="2000"></textarea>
+            <button type="submit">Enregistrer</button>
+          </fieldset>
+        </form>
+        <p id="status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </body>
+</html>

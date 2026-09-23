@@ -6,7 +6,7 @@
 
 **Un registre pour vos proches, un rappel pour leurs jours de fête.**
 
-Extension en préparation pour **Mozilla Firefox** et **Google Chrome**.
+Extension pour **Mozilla Firefox** et **Google Chrome** — version de développement **0.2.0**.
 
 </div>
 
@@ -18,14 +18,14 @@ Les chemins s’allongent, les saisons se succèdent, et les compagnons d’autr
 
 Il reste pourtant des jours où un simple message suffit à réduire la distance.
 
-**Rappel anniversaire** vous aidera à conserver les dates importantes et à retrouver, au moment venu, les informations nécessaires pour un appel, quelques mots ou une invitation à partager un bon repas.
+**Rappel anniversaire** conserve vos dates importantes et rassemble les informations nécessaires pour un appel, quelques mots ou une invitation à partager un bon repas.
 
-> **L’aventure commence.**
-> L’extension est en cours de développement. Les fonctionnalités décrites ci-dessous présentent son fonctionnement prévu.
+> **L’aventure se poursuit.**
+> Les fonctionnalités sont implémentées. Cette version reste à valider en utilisation réelle dans Firefox et Chrome ; elle n’est pas publiée dans leurs boutiques.
 
 ## 📖 Le livre des compagnons
 
-Chaque personne possède sa fiche dans votre registre. Même un roi mérite qu’on pense à son anniversaire.
+Même un roi mérite qu’on pense à son anniversaire.
 
 | Champ | Exemple |
 |---|---|
@@ -34,56 +34,54 @@ Chaque personne possède sa fiche dans votre registre. Même un roi mérite qu�
 | **Téléphone** | `06 XX XX XX XX` — les palantíri captent assez mal |
 | **Commentaire** | Prévoir un banquet avec Arwen. Éviter les bougies : le gâteau manque de place. |
 
+Ajoutez, modifiez ou supprimez vos fiches. Le registre les regroupe dans des accordéons mensuels, puis par jour. La recherche porte sur les noms, téléphones et commentaires, sans distinction de casse ni d’accents.
+
 ## 🔔 Lorsque revient le jour de fête
 
-1. **Le calendrier est consulté.** L’extension compare le jour et le mois des fiches avec ceux de la date du jour.
-2. **Le registre s’ouvre.** Un onglet présente les informations des personnes dont c’est l’anniversaire.
-3. **La cloche revient vous prévenir.** Une notification apparaît toutes les deux heures pendant cette journée.
+L’extension compare le **jour et le mois** des fiches à la date locale. Au démarrage du navigateur et aux **heures paires**, elle ouvre une fenêtre regroupant tous les anniversaires du jour et demande une notification système. Une fenêtre déjà ouverte est réutilisée.
+
+- **Ignorer aujourd’hui** suspend les rappels jusqu’au lendemain, même après redémarrage.
+- **Plus tard** reporte le rappel à la prochaine heure paire, même après redémarrage.
+- Aucun anniversaire : aucun rappel.
+
+Les alarmes peuvent être retardées par le navigateur, notamment pendant la veille. Au retour, un rappel manqué est traité pour la journée courante. Le navigateur doit fonctionner pour déclencher les rappels. Les anniversaires du **29 février** sont signalés uniquement les années bissextiles.
 
 De quoi penser aux bougies avant d’entamer le second petit déjeuner.
 
-Le comportement au redémarrage du navigateur et le traitement des anniversaires du **29 février** restent à préciser.
-
 ## 🗝️ Un registre gardé chez vous
 
-Vous renseignerez vous-même vos fiches. Elles seront conservées **localement dans votre profil de navigateur**, grâce au stockage dédié à l’extension : `storage.local`.
+Vous renseignez vos fiches, conservées **localement dans votre profil de navigateur** grâce à `storage.local`. Aucun serveur ne centralise ces informations et aucune donnée personnelle n’est envoyée vers GitHub.
 
-**Aucun serveur ne centralisera ces informations. L’extension n’enverra aucune donnée personnelle vers le dépôt GitHub.**
-
-Chaque profil de navigateur possède son propre registre : les fiches de profils différents ne sont ni mélangées ni partagées. Les personnes utilisant **le même profil de navigateur** auront toutefois accès aux mêmes fiches.
+Les profils de navigateur possèdent des registres indépendants. Les personnes utilisant **le même profil** ont accès aux mêmes fiches.
 
 ### Conserver les écrits
 
-Chaque ajout, modification ou suppression sera automatiquement enregistré.
-
-Vos fiches seront conservées après la fermeture du navigateur ou le redémarrage de l’ordinateur. La désinstallation de l’extension ou la suppression du profil pourra cependant les effacer.
-
-Même les archives les mieux tenues méritent une copie.
+Chaque enregistrement et suppression confirmé est sauvegardé. Les fiches restent présentes après fermeture du navigateur ou redémarrage de l’ordinateur. Désinstaller l’extension ou supprimer le profil peut les effacer.
 
 ### 📦 Exporter pour le voyage
 
-La fonction **Exporter** permettra de télécharger un fichier **JSON contenant toutes vos fiches**, pour :
-
-- conserver une sauvegarde ;
-- emporter votre registre sur un autre ordinateur ;
-- passer de Firefox à Chrome, ou inversement.
-
-L’export sera manuel. Aucune synchronisation automatique entre navigateurs ou appareils n’est prévue à ce stade.
+Le bouton **Exporter**, dans la popup, télécharge vos fiches dans un fichier JSON UTF-8. Il permet une sauvegarde manuelle ou un transfert entre navigateurs et ordinateurs. Les suspensions de rappel ne sont pas exportées.
 
 ### 📥 Retrouver son registre
 
-La fonction **Importer** permettra de restaurer vos fiches depuis un fichier JSON précédemment exporté.
+Le bouton **Importer**, dans la popup, ouvre un fichier JSON et vérifie toutes ses fiches avant enregistrement. Une confirmation indique les ajouts et remplacements : un identifiant existant est remplacé, les autres fiches sont conservées. Deux noms identiques avec des identifiants différents restent distincts.
 
-Son contenu sera vérifié avant enregistrement. Les modalités de gestion des fiches déjà présentes et des doublons restent à définir.
+Limites d’import : **5 Mo et 10 000 fiches**. Aucune synchronisation automatique entre appareils.
 
 > **Toutes les archives ne sont pas scellées.**
-> Le fichier exporté contiendra vos données personnelles en clair, sans chiffrement. Conservez-le dans un emplacement sûr.
+> Le fichier exporté contient les données personnelles en clair, sans chiffrement. Conservez-le dans un emplacement sûr.
 
 ## 🚪 Avant de quitter le foyer
 
-L’extension n’est pas encore disponible à l’installation.
+**Chrome 121 ou ultérieur** : ouvrir `chrome://extensions`, activer le mode développeur, puis « Charger l’extension non empaquetée » et sélectionner le dossier `extension`.
 
-Les instructions pour **Mozilla Firefox** et **Google Chrome** seront ajoutées dès qu’une première version testable sera prête.
+**Firefox 142 ou ultérieur** : ouvrir `about:debugging`, puis « Ce Firefox » et « Charger un module complémentaire temporaire ». Sélectionner `extension/manifest.json`. Ce chargement est temporaire ; une installation permanente nécessite la signature Mozilla.
+
+Après une mise à jour, recharger l’extension et rouvrir ses pages. Les permissions demandées servent au **stockage**, aux **alarmes** et aux **notifications**.
+
+Le registre propose 100 fiches fictives et un bouton de test du rappel. Le jeu de test contient trois anniversaires le **23 septembre** et trois le **24 septembre**. Il peut être supprimé sans retirer les contacts ajoutés manuellement.
+
+Les explications du code, les commandes de test et la préparation des archives sont dans le [guide de développement](docs/DEVELOPPEMENT.md).
 
 ---
 

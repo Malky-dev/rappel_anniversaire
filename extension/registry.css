@@ -1,0 +1,79 @@
+/* Le formulaire dispose de la surface d’un onglet, hors de la popup. */
+body {
+  width: auto;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+main {
+  padding: 32px 24px 80px;
+}
+
+.registry-controls {
+  display: grid;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.registry-controls label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.contact-actions button {
+  margin: 0;
+}
+
+.danger {
+  background: #8a2929;
+}
+
+.demo-data {
+  padding: 12px;
+  border: 1px solid #b9aa87;
+  border-radius: 4px;
+}
+
+.demo-data summary {
+  cursor: pointer;
+}
+
+.month-group {
+  margin-bottom: 12px;
+  border: 1px solid #b9aa87;
+  border-radius: 6px;
+}
+
+.month-group > summary {
+  padding: 14px;
+  background: #ebe5d6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.month-group > p {
+  padding: 0 14px;
+}
+
+.contact-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.month-group > .contact-list {
+  padding: 14px 14px 0;
+}
+
+.today-section {
+  margin-bottom: 28px;
+}

@@ -1,0 +1,157 @@
+:root {
+  color-scheme: light;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #25392d;
+  background-color: #f7f2e7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 390px;
+  margin: 0;
+}
+
+main {
+  padding: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font: 0.75rem/1.5 system-ui, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.subtitle {
+  margin: 12px 0 24px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+section {
+  padding-top: 20px;
+  border-top: 1px solid #b9aa87;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+}
+
+section p {
+  font: 0.875rem/1.6 system-ui, sans-serif;
+}
+
+.notice {
+  padding: 12px;
+  border-left: 3px solid #536d4e;
+  background-color: #ebe5d6;
+}
+
+fieldset {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+label, input, textarea, button {
+  font: 0.875rem/1.5 system-ui, sans-serif;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  color: #25392d;
+  background: #fffdf8;
+  border: 1px solid #81775f;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  margin-top: 6px;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  background: #34533c;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+:focus-visible {
+  outline: 3px solid #986900;
+  outline-offset: 2px;
+}
+
+#status {
+  min-height: 1.6em;
+}
+
+#contacts {
+  padding: 0;
+  list-style: none;
+}
+
+#contacts li,
+#today-contacts li {
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #b9aa87;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+#contacts h3,
+#today-contacts h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+#contacts p,
+#today-contacts p {
+  margin: 6px 0 0;
+  white-space: pre-wrap;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 4px;
+  color: white;
+  background: #34533c;
+  font: 0.875rem/1.5 system-ui, sans-serif;
+  text-decoration: none;
+}
+
+.button-link:hover {
+  background: #263e2c;
+}
+
+.popup-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.page-nav {
+  margin-bottom: 24px;
+  font: 0.875rem/1.5 system-ui, sans-serif;
+}

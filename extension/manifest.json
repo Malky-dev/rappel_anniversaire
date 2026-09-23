@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Rappel anniversaire",
+  "version": "0.2.0",
+  "description": "Un registre pour vos proches, un rappel pour leurs jours de fête.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications"
+  ],
+  "action": {
+    "default_title": "Rappel anniversaire",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": [
+      "contacts.js",
+      "birthdays.js",
+      "reminder-policy.js",
+      "background.js"
+    ]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "rappel_anniversaire@malky-dev",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "minimum_chrome_version": "121",
+  "icons": {
+    "128": "icons/icon128.png",
+    "48": "icons/icon48.png",
+    "16": "icons/icon16.png"
+  }
+}

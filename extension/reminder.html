@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Les anniversaires du jour</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="registry.css">
+    <script src="contact-store.js" defer></script>
+    <script src="contacts.js" defer></script>
+    <script src="birthdays.js" defer></script>
+    <script src="reminder.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Un jour à célébrer</p>
+      <h1>Les anniversaires du jour</h1>
+      <p id="status" role="status">Chargement…</p>
+      <ul id="today-contacts" class="contact-list"></ul>
+      <div class="contact-actions">
+        <button id="mute" type="button">Ignorer aujourd’hui</button>
+        <button id="later" type="button">Plus tard</button>
+      </div>
+      <p>Ces choix s’appliquent à tous les anniversaires du jour.</p>
+    </main>
+  </body>
+</html>

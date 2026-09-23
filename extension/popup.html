@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rappel anniversaire</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="contact-store.js" defer></script>
+    <script src="contacts.js" defer></script>
+    <script src="birthdays.js" defer></script>
+    <script src="transfer.js" defer></script>
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Le livre des compagnons</p>
+      <h1>Rappel anniversaire</h1>
+      <p class="subtitle">Les années passent. Les liens demeurent.</p>
+      <nav class="popup-actions" aria-label="Actions du registre">
+        <a class="button-link" href="form.html" target="_blank" rel="noopener">Ajouter un compagnon</a>
+        <a class="button-link" href="registry.html" target="_blank" rel="noopener">Ouvrir le registre</a>
+      </nav>
+      <div class="popup-actions">
+        <button id="import-data" type="button">Importer</button>
+        <button id="export-data" type="button">Exporter</button>
+      </div>
+      <input id="import-file" type="file" accept=".json,application/json" hidden>
+      <p id="status" role="status"></p>
+      <p>Chaque page s’ouvre dans un nouvel onglet.</p>
+    </main>
+  </body>
+</html>
