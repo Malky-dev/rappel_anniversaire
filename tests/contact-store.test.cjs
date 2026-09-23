@@ -8,7 +8,7 @@ const context = vm.createContext({});
 for (const name of ["contact-store.js", "contacts.js"]) {
   vm.runInContext(fs.readFileSync(path.join(__dirname, "../extension", name), "utf8"), context);
 }
-const demo = JSON.parse(fs.readFileSync(path.join(__dirname, "../extension/demo-contacts.json"), "utf8"));
+const demo = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/demo-contacts.json"), "utf8"));
 function setup() {
   const data = {};
   const storage = {

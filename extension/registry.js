@@ -55,7 +55,8 @@
     emptyMessage.textContent = contacts.length === 0
       ? "Aucune fiche enregistrée pour le moment."
       : "Aucun compagnon ne correspond à votre recherche.";
-    statusMessage.textContent = `${visibleContacts.length} fiche(s) affichée(s) sur ${contacts.length}.`;
+    document.querySelector("#list-title").textContent = `Vos compagnons (${visibleContacts.length})`;
+    statusMessage.textContent = "";
 
     if (searchInput.value.trim()) {
       const results = document.createElement("ul");
@@ -67,10 +68,11 @@
 
     const groups = groupContactsByMonth(visibleContacts);
     for (const [month, monthContacts] of groups.entries()) {
+      if (monthContacts.length === 0) continue;
       const accordion = document.createElement("details");
       accordion.className = "month-group";
       accordion.dataset.month = String(month);
-      accordion.open = openMonths.get(month) ?? month === new Date().getMonth();
+      accordion.open = openMonths.get(month) ?? false;
       const summary = document.createElement("summary");
       summary.textContent = `${monthNames[month]} (${monthContacts.length})`;
       accordion.append(summary);
@@ -89,29 +91,19 @@
   }
 
   function createContactItem(contact) {
-    const item = document.createElement("li");
-    const title = document.createElement("h3");
-    // textContent affiche la saisie comme du texte, jamais comme du HTML.
-    title.textContent = contact.name;
-    item.append(title);
-
-    for (const text of [formatBirthday(contact.birthday), contact.phone, contact.comment]) {
-      if (!text) continue;
-      const paragraph = document.createElement("p");
-      paragraph.textContent = text;
-      item.append(paragraph);
-    }
     const actions = document.createElement("div");
-    actions.className = "contact-actions";
+    actions.className = "card-actions";
     const editLink = document.createElement("a");
-    editLink.className = "button-link";
+    editLink.className = "icon-button";
     editLink.href = `form.html?id=${encodeURIComponent(contact.id)}`;
-    editLink.textContent = "Modifier";
+    editLink.append(createActionIcon("edit"));
+    editLink.title = "Modifier";
     editLink.setAttribute("aria-label", `Modifier ${contact.name}`);
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
-    deleteButton.className = "danger";
-    deleteButton.textContent = "Supprimer";
+    deleteButton.className = "icon-button icon-danger";
+    deleteButton.append(createActionIcon("delete"));
+    deleteButton.title = "Supprimer";
     deleteButton.setAttribute("aria-label", `Supprimer ${contact.name}`);
     deleteButton.addEventListener("click", async () => {
       if (!window.confirm(`Supprimer la fiche de ${contact.name} ? Cette action est définitive.`)) return;
@@ -128,8 +120,7 @@
       }
     });
     actions.append(editLink, deleteButton);
-    item.append(actions);
-    return item;
+    return createContactCard(contact, actions);
   }
 
   async function loadContacts() {
@@ -160,58 +151,4 @@
 
   loadContacts();
 
-  document.querySelector("#test-reminder").addEventListener("click", async (event) => {
-    const button = event.currentTarget;
-    button.disabled = true;
-    try {
-      const result = await extensionApi.runtime.sendMessage({ type: "test-reminder" });
-      if (!result?.ok) throw new Error(result?.error ?? "Rechargez l’extension.");
-      actionStatus.textContent = result.shown ? "Fenêtre de rappel ouverte." : result.reason;
-    } catch (error) { actionStatus.textContent = `Test impossible : ${error.message}`; }
-    finally { button.disabled = false; }
-  });
-
-  const demoButton = document.querySelector("#load-demo");
-  const removeDemoButton = document.querySelector("#remove-demo");
-  demoButton.addEventListener("click", async () => {
-    demoButton.disabled = true;
-    removeDemoButton.disabled = true;
-    try {
-      const response = await fetch("demo-contacts.json");
-      if (!response.ok) throw new Error("Jeu de test indisponible");
-      const demo = await response.json();
-      const count = await contactStore.addMissing(demo.contacts);
-      await loadContacts();
-      actionStatus.textContent = `${count} fiche(s) fictive(s) ajoutée(s). Les fiches déjà présentes ont été conservées.`;
-    } catch (error) {
-      actionStatus.textContent = "Chargement des contacts fictifs impossible. Réessayez.";
-      console.error("Chargement du jeu de test impossible", error);
-    } finally {
-      demoButton.disabled = false;
-      removeDemoButton.disabled = false;
-    }
-  });
-
-  removeDemoButton.addEventListener("click", async () => {
-    if (!window.confirm("Supprimer les fiches de démonstration, y compris celles modifiées ? Vos contacts ajoutés manuellement seront conservés.")) return;
-    demoButton.disabled = true;
-    removeDemoButton.disabled = true;
-    try {
-      const response = await fetch("demo-contacts.json");
-      if (!response.ok) throw new Error("Jeu de test indisponible");
-      const demo = await response.json();
-      // On cible les identifiants exacts du jeu de test, jamais le nom ou le commentaire.
-      const count = await contactStore.removeKnownContacts(demo.contacts.map((contact) => contact.id));
-      await loadContacts();
-      actionStatus.textContent = count
-        ? `${count} fiche(s) de test supprimée(s). Vos autres contacts sont conservés.`
-        : "Aucune donnée de test à supprimer.";
-    } catch (error) {
-      actionStatus.textContent = "Suppression des données de test impossible. Réessayez.";
-      console.error("Suppression des données de test impossible", error);
-    } finally {
-      demoButton.disabled = false;
-      removeDemoButton.disabled = false;
-    }
-  });
 })();

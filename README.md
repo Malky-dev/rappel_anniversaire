@@ -6,7 +6,7 @@
 
 **Un registre pour vos proches, un rappel pour leurs jours de fête.**
 
-Extension pour **Mozilla Firefox** et **Google Chrome** — version de développement **0.2.0**.
+Extension pour **Mozilla Firefox** et **Google Chrome** — version **1.0.0**.
 
 </div>
 
@@ -21,7 +21,7 @@ Il reste pourtant des jours où un simple message suffit à réduire la distance
 **Rappel anniversaire** conserve vos dates importantes et rassemble les informations nécessaires pour un appel, quelques mots ou une invitation à partager un bon repas.
 
 > **L’aventure se poursuit.**
-> Les fonctionnalités sont implémentées. Cette version reste à valider en utilisation réelle dans Firefox et Chrome ; elle n’est pas publiée dans leurs boutiques.
+> Les fonctionnalités ont été validées manuellement par le propriétaire du projet. L’extension n’est pas publiée dans les boutiques des navigateurs.
 
 ## 📖 Le livre des compagnons
 
@@ -79,7 +79,6 @@ Limites d’import : **5 Mo et 10 000 fiches**. Aucune synchronisation automatiq
 
 Après une mise à jour, recharger l’extension et rouvrir ses pages. Les permissions demandées servent au **stockage**, aux **alarmes** et aux **notifications**.
 
-Le registre propose 100 fiches fictives et un bouton de test du rappel. Le jeu de test contient trois anniversaires le **23 septembre** et trois le **24 septembre**. Il peut être supprimé sans retirer les contacts ajoutés manuellement.
 
 Les explications du code, les commandes de test et la préparation des archives sont dans le [guide de développement](docs/DEVELOPPEMENT.md).
 

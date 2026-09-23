@@ -50,7 +50,7 @@ async function backgroundHarness() {
   for (let i = 0; i < 3; i++) data[`contact:${i}`] = { ...contact, id: String(i), birthday: `2000-${key.slice(5)}` };
   const api = {
     runtime: { id: "test", getURL: (name) => `chrome-extension://test/${name}`, onStartup: event(), onInstalled: event(), onMessage: event() },
-    storage: { local: { async get(key) { return key === null ? { ...data } : { [key]: data[key] }; }, async set(values) { Object.assign(data, values); } } },
+    storage: { local: { async get(key) { return key === null ? { ...data } : { [key]: data[key] }; }, async set(values) { Object.assign(data, values); }, async remove(keys) { for (const key of keys) delete data[key]; } } },
     tabs: { async query() { return tabs; }, async update() {} },
     windows: { async create(options) { tabs.push({ url: options.url, id: 1, windowId: 1 }); }, async update() {} },
     alarms: { async create(name, value) { alarms[name] = value; }, async get(name) { return alarms[name]; }, onAlarm: event() },
@@ -88,4 +88,15 @@ test("aucune fiche, aucune fenêtre ; panne notification n’arrête pas le rapp
   assert.equal((await h.send("test-reminder")).shown, true);
   for (const key of Object.keys(h.data)) delete h.data[key];
   assert.equal((await h.send("test-reminder")).shown, false);
+});
+
+test("mise à jour : nettoyage des seules fiches de démonstration", async () => {
+  const h = await backgroundHarness();
+  h.data["contact:demo-20260923-001"] = { ...contact };
+  h.data["contact:personnel"] = { ...contact };
+  h.api.runtime.onInstalled.listeners[0]();
+  await h.drain();
+  assert.equal(h.data["contact:demo-20260923-001"], undefined);
+  assert.ok(h.data["contact:personnel"]);
+  assert.ok(h.alarms["birthday-even-hour"]);
 });

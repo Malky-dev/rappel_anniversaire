@@ -10,20 +10,14 @@
       const stored = await api.storage.local.get(null);
       const contacts = Object.entries(stored).filter(([key]) => key.startsWith("contact:")).map(([, contact]) => contact);
       const today = findBirthdaysForDate(contacts).sort((a, b) => a.name.localeCompare(b.name, "fr"));
+      const expanded = new Set([...list.querySelectorAll(".contact-card")]
+        .filter((card) => card.querySelector("details")?.open).map((card) => card.dataset.contactId));
       list.replaceChildren();
       status.textContent = today.length ? `${today.length} anniversaire(s) aujourd’hui.` : "Aucun anniversaire aujourd’hui.";
       for (const contact of today) {
-        const item = document.createElement("li");
-        const title = document.createElement("h2");
-        title.textContent = contact.name;
-        item.append(title);
-        for (const value of [formatBirthday(contact.birthday), contact.phone, contact.comment]) {
-          if (!value) continue;
-          const paragraph = document.createElement("p");
-          paragraph.textContent = value;
-          item.append(paragraph);
-        }
-        list.append(item);
+        const card = createContactCard(contact);
+        if (expanded.has(contact.id) && card.querySelector("details")) card.querySelector("details").open = true;
+        list.append(card);
       }
     } catch (error) { status.textContent = "Impossible de lire les anniversaires. Rechargez cette fenêtre."; }
   }

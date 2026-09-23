@@ -8,7 +8,7 @@ const context = vm.createContext({});
 for (const file of ["contacts.js", "birthdays.js"]) {
   vm.runInContext(fs.readFileSync(path.join(__dirname, "../extension", file), "utf8"), context);
 }
-const demo = JSON.parse(fs.readFileSync(path.join(__dirname, "../extension/demo-contacts.json"), "utf8"));
+const demo = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/demo-contacts.json"), "utf8"));
 test("trois anniversaires le 23 et trois autres le 24 septembre", () => {
   const today = context.findBirthdaysForDate(demo.contacts, new Date(2026, 8, 23));
   const tomorrow = context.findBirthdaysForDate(demo.contacts, new Date(2026, 8, 24));

@@ -1,79 +1,36 @@
-/* Le formulaire dispose de la surface d’un onglet, hors de la popup. */
 body {
   width: auto;
-  max-width: 720px;
+  max-width: 840px;
+  min-height: 100vh;
   margin: 0 auto;
+  padding: 40px 24px;
+  background: radial-gradient(ellipse at 50% 0%, #335342 0%, transparent 70%);
 }
-
 main {
-  padding: 32px 24px 80px;
+  min-height: calc(100vh - 80px);
+  padding: 36px 42px 56px;
+  border: 1px solid #b39b64;
+  border-top: 3px solid #b39b64;
+  border-radius: 80px 80px 8px 8px;
+  box-shadow: 0 18px 80px #0004, inset 0 0 0 5px #eeeadb;
 }
-
-.registry-controls {
-  display: grid;
-  gap: 16px;
-  margin: 20px 0;
-}
-
-.registry-controls label {
-  display: block;
-  margin-bottom: 6px;
-}
-
-
-.contact-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.contact-actions button {
-  margin: 0;
-}
-
-.danger {
-  background: #8a2929;
-}
-
-.demo-data {
-  padding: 12px;
-  border: 1px solid #b9aa87;
-  border-radius: 4px;
-}
-
-.demo-data summary {
-  cursor: pointer;
-}
-
-.month-group {
-  margin-bottom: 12px;
-  border: 1px solid #b9aa87;
-  border-radius: 6px;
-}
-
+main > .eyebrow, main > h1, main > .subtitle { text-align: center; }
+.page-nav { display: flex; justify-content: center; }
+.registry-controls { margin: 24px 0 16px; }
+.registry-controls label { display: block; margin-bottom: 8px; }
+.month-group { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px 2px; overflow: hidden; }
 .month-group > summary {
-  padding: 14px;
-  background: #ebe5d6;
-  font-weight: bold;
-  cursor: pointer;
+  padding: 16px 20px; color: var(--forest); background: #edeedf; cursor: pointer;
+  font-size: 1.12rem; letter-spacing: 0.02em;
 }
-
-.month-group > p {
-  padding: 0 14px;
-}
-
-.contact-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.month-group > .contact-list {
-  padding: 14px 14px 0;
-}
-
-.today-section {
-  margin-bottom: 28px;
+.month-group[open] > summary { border-bottom: 1px solid var(--line); }
+.month-group > summary:hover { background: #e4e8d7; }
+.month-group > p { padding: 0 20px; color: var(--muted); }
+.month-group > .contact-list { padding: 14px 14px 2px; }
+.today-section { margin-bottom: 30px; }
+.today-section > h2::before { content: "✧ "; color: #8e733b; }
+@media (max-width: 560px) {
+  body { padding: 12px 8px; }
+  main { padding: 28px 16px 36px; border-radius: 40px 40px 6px 6px; }
+  .month-group > .contact-list { padding: 10px 8px 0; }
 }

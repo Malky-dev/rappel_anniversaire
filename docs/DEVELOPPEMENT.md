@@ -34,17 +34,14 @@ Après une modification du manifeste, recharger l’extension depuis sa page de 
 1. Ajouter une fiche, fermer puis rouvrir le registre et vérifier sa persistance.
 2. Modifier la fiche, vérifier l’absence de doublon, annuler puis confirmer une suppression.
 3. Vérifier les accordéons et la recherche sans accents.
-4. Charger les 100 fiches de démonstration. Le jeu est daté du 23 septembre 2026 : exactement 3 anniversaires le 23/09 et 3 le 24/09. Ces dates ne se déplacent pas automatiquement.
-5. Pour tester un autre jour, ajouter des fiches fictives avec la date du jour et des années différentes.
-6. Dans « Données de démonstration et tests », cliquer sur « Tester le rappel maintenant ». Le test respecte les suspensions déjà choisies.
-7. Vérifier une seule fenêtre regroupant les personnes et une notification système si le système l’autorise. Déclencher à nouveau : la fenêtre existante doit être réutilisée.
-8. Cliquer « Plus tard » : le test manuel et un redémarrage restent suspendus jusqu’à l’heure paire suivante.
-9. Cliquer « Ignorer aujourd’hui » : aucun rappel jusqu’au lendemain, même après redémarrage.
-10. Tester le vrai démarrage en quittant complètement le navigateur. Ouvrir une nouvelle fenêtre ne constitue pas un démarrage du navigateur.
-11. Vérifier un déclenchement à l’heure paire et le rattrapage au retour de veille. Les alarmes peuvent être retardées par le navigateur ; l’extension ne réveille pas l’ordinateur.
-12. Exporter depuis la popup, puis importer dans un autre profil de test. Vérifier les accents, commentaires et téléphones.
-13. Importer deux fois : les mêmes identifiants sont remplacés après confirmation, pas dupliqués. Un JSON invalide doit être refusé sans modification des fiches.
-14. Supprimer les données de test : les contacts manuels et les réglages doivent rester présents.
+4. Ajouter des contacts fictifs avec la date du jour dans un profil de test.
+5. Quitter complètement puis relancer le navigateur : une seule fenêtre doit regrouper les anniversaires.
+6. Vérifier « Plus tard » à la prochaine heure paire et « Ignorer aujourd’hui » jusqu’au lendemain, y compris après redémarrage.
+7. Vérifier le rattrapage au retour de veille.
+8. Exporter depuis la popup, puis importer dans un autre profil de test. Vérifier accents, commentaires et téléphones.
+9. Importer deux fois : les mêmes identifiants sont remplacés après confirmation, pas dupliqués. Un JSON invalide doit être refusé sans modification des fiches.
+
+Les fixtures des tests automatisés restent dans `tests/fixtures`, hors des archives distribuées. À la mise à jour, les 100 identifiants de démonstration de l’ancienne version sont supprimés du stockage ; les contacts manuels sont conservés.
 
 Le calendrier natif, les fenêtres, le téléchargement et les permissions doivent être testés dans les deux navigateurs.
 

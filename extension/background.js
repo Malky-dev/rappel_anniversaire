@@ -50,7 +50,14 @@ async function scheduledCheck() {
   finally { await scheduleNext(); }
 }
 api.runtime.onStartup.addListener(() => { enqueue(scheduledCheck); });
-api.runtime.onInstalled.addListener(() => { enqueue(scheduledCheck); });
+api.runtime.onInstalled.addListener(() => {
+  enqueue(async () => {
+    // Retirer uniquement les identifiants du jeu de démonstration précédent.
+    const demoKeys = Array.from({ length: 100 }, (_, index) => `contact:demo-20260923-${String(index + 1).padStart(3, "0")}`);
+    await api.storage.local.remove(demoKeys);
+    await scheduledCheck();
+  });
+});
 api.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === alarmName) enqueue(scheduledCheck);
 });

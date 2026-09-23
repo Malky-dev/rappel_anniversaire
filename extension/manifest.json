@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Rappel anniversaire",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Un registre pour vos proches, un rappel pour leurs jours de fête.",
   "permissions": [
     "storage",
